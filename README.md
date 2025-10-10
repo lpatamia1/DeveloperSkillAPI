@@ -39,7 +39,7 @@ What Makes This API Clean, Extensible, and Developer-Friendly
 
 <div align="center">
 
-## 🎨 UI Preview
+## UI Preview
 Snapshot or visual demo of what the app looks like running
 
 ![App Preview](assets/demo-preview.png)
