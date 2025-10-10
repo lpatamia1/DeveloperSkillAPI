@@ -122,7 +122,7 @@ Demonstrating JSON Data Flow Through API Endpoints
 
 ```json
 {
-  "name": "Lily Patamia",
+  "name": "John Doe",
   "title": "Java Developer",
   "skills": ["Spring Boot", "API Design", "JSON"],
   "certifications": ["Oracle Java SE"]
