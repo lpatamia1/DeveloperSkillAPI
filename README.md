@@ -42,7 +42,7 @@ What Makes This API Clean, Extensible, and Developer-Friendly
 ## UI Preview
 Snapshot or visual demo of what the app looks like running
 
-![App Preview](assets/demo-preview.png)
+<img src="assets/demo-preview.png" alt="App Preview" width="450" style="border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
 
 </div>
 
