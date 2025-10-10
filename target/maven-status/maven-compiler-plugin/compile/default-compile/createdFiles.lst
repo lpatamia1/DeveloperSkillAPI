@@ -4,3 +4,5 @@ com/example/developers/DeveloperSkillApiApplication.class
 com/example/developers/Developer.class
 com/example/developers/GlobalExceptionHandler.class
 com/example/developers/DeveloperService.class
+com/example/developers/JsonStorage$1.class
+com/example/developers/JsonStorage.class

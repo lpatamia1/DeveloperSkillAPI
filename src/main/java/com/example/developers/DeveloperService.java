@@ -37,6 +37,6 @@ public class DeveloperService {
         if (!repository.existsById(id)) {
             throw new RuntimeException("Developer not found");
         }
-        repository.deleteById(id); // 
+        repository.delete(id); // 
     }
 }
