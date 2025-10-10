@@ -4,4 +4,10 @@
   "title" : "Developer",
   "skills" : [ "Java" ],
   "certifications" : [ "AWS" ]
+}, {
+  "id" : 3,
+  "name" : "Lily Patamia",
+  "title" : "Java Developer",
+  "skills" : [ "Spring Boot", "REST", "JSON" ],
+  "certifications" : [ "Oracle Java SE" ]
 } ]
