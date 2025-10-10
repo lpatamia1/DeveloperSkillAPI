@@ -1,41 +1,58 @@
-package com.example.developers;
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-import org.springframework.web.bind.annotation.*;
-import java.util.List;
+    <modelVersion>4.0.0</modelVersion>
 
-@RestController
-@RequestMapping("/api/developers")
-@CrossOrigin(origins = "*")
-public class DeveloperController {
+    <!-- ✅ This parent automatically provides versions for Spring Boot dependencies -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.2</version> <!-- You can bump this later -->
+        <relativePath/> <!-- lookup parent from the repository -->
+    </parent>
 
-    private final DeveloperService service;
+    <groupId>com.example</groupId>
+    <artifactId>DeveloperSkillAPI</artifactId>
+    <version>1.0.0</version>
+    <name>Developer Skill API</name>
+    <description>A clean and scalable Spring Boot REST API</description>
 
-    public DeveloperController(DeveloperService service) {
-        this.service = service;
-    }
+    <properties>
+        <java.version>11</java.version>
+    </properties>
 
-    @GetMapping
-    public List<Developer> getAll() {
-        return service.getAll();
-    }
+    <dependencies>
+        <!-- 🌐 Web dependency -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
 
-    @GetMapping("/{id}")
-    public Developer getById(@PathVariable int id) {
-        return service.getById(id);
-    }
+        <!-- ✨ Lombok (auto-generates getters/setters) -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
 
-    @PostMapping
-    public Developer addDeveloper(@RequestBody Developer dev) {
-        return service.addDeveloper(dev);
-    }
+        <!-- 🧪 Testing -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
-    @PutMapping("/{id}")
-    public Developer updateDeveloper(@PathVariable int id, @RequestBody Developer updated) {
-        return service.updateDeveloper(id, updated);
-    }
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
-    @DeleteMapping("/{id}")
-    public void deleteDeveloper(@PathVariable int id) {
-        service.deleteDeveloper(id);
-    }
-}
+</project>

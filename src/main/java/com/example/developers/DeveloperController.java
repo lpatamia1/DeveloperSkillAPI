@@ -1,14 +1,41 @@
 package com.example.developers;
 
-import lombok.Data;
-import java.util.ArrayList;
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@Data
-public class Developer {
-    private int id;
-    private String name;
-    private String title;
-    private List<String> skills = new ArrayList<>();
-    private List<String> certifications = new ArrayList<>();
+@RestController
+@RequestMapping("/api/developers")
+@CrossOrigin(origins = "*")
+public class DeveloperController {
+    
+    private final DeveloperService service;
+
+    public DeveloperController(DeveloperService service) {
+        this.service = service;
+    }
+
+    @GetMapping
+    public List<Developer> getAll() {
+        return service.getAll();
+    }
+
+    @GetMapping("/{id}")
+    public Developer getById(@PathVariable int id) {
+        return service.getById(id);
+    }
+
+    @PostMapping
+    public Developer addDeveloper(@RequestBody Developer dev) {
+        return service.addDeveloper(dev);
+    }
+
+    @PutMapping("/{id}")
+    public Developer updateDeveloper(@PathVariable int id, @RequestBody Developer updated) {
+        return service.updateDeveloper(id, updated);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteDeveloper(@PathVariable int id) {
+        service.deleteDeveloper(id);
+    }
 }

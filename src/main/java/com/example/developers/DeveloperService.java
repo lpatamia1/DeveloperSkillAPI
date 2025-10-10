@@ -5,35 +5,36 @@ import java.util.*;
 
 @Service
 public class DeveloperService {
-    private Map<Integer, Developer> developers = new HashMap<>();
-    private int nextId = 1;
+    private final DeveloperRepository repository;
+
+    public DeveloperService(DeveloperRepository repository) {
+        this.repository = repository;
+    }
 
     public List<Developer> getAll() {
-        return new ArrayList<>(developers.values());
+        return repository.findAll();
     }
 
     public Developer getById(int id) {
-        return developers.get(id);
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("Developer not found"));
     }
 
     public Developer addDeveloper(Developer dev) {
-        dev.setId(nextId++);
-        developers.put(dev.getId(), dev);
-        return dev;
+        return repository.save(dev);
     }
 
     public Developer updateDeveloper(int id, Developer updated) {
-        Developer existing = developers.get(id);
-        if (existing != null) {
-            existing.setName(updated.getName());
-            existing.setTitle(updated.getTitle());
-            existing.setSkills(updated.getSkills());
-            existing.setCertifications(updated.getCertifications());
-        }
-        return existing;
+        Developer existing = getById(id);
+        existing.setName(updated.getName());
+        existing.setTitle(updated.getTitle());
+        existing.setSkills(updated.getSkills());
+        existing.setCertifications(updated.getCertifications());
+        return repository.save(existing);
     }
 
     public void deleteDeveloper(int id) {
-        developers.remove(id);
+        if (!repository.existsById(id))
+            throw new RuntimeException("Developer not found");
+        repository.delete(id);
     }
 }
