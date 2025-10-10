@@ -2,8 +2,6 @@
   
 # 🧩 Developer Skill API
 
-### A Clean, Scalable Java Spring Boot REST API  
-
 ![Java](https://img.shields.io/badge/Java-006400?style=for-the-badge&logo=java&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-006400?style=for-the-badge&logo=springboot&logoColor=white)
 ![Maven](https://img.shields.io/badge/Maven-006400?style=for-the-badge&logo=apachemaven&logoColor=white)
@@ -15,7 +13,8 @@
 
 <div align="center">
 
-## 📖 Overview
+## Project Overview
+A Clean, Scalable Java Spring Boot REST API  
 
 </div>
 
@@ -25,7 +24,9 @@ It’s designed for learning, interviews, or as part of a developer portfolio to
 ---
 <div align="center">
 
-## 🚀 Features
+## Core Features
+What Makes This API Clean, Extensible, and Developer-Friendly
+
 </div>
 
 - **RESTful Endpoints** — Organized using MVC patterns  
@@ -38,7 +39,8 @@ It’s designed for learning, interviews, or as part of a developer portfolio to
 
 <div align="center">
 
-## 🛠️ Tech Stack
+## Tech Stack Overview
+Tools, Frameworks, and Their Roles in the Project
 
 </div>  
 
@@ -48,26 +50,42 @@ It’s designed for learning, interviews, or as part of a developer portfolio to
   <tr>
     <th>Category</th>
     <th>Technology</th>
+    <th>Purpose</th>
   </tr>
   <tr>
     <td><b>Language</b></td>
     <td>Java</td>
+    <td>Implements core API logic and data models.</td>
   </tr>
   <tr>
     <td><b>Framework</b></td>
     <td>Spring Boot</td>
+    <td>Provides REST API setup, DI, and configuration management.</td>
   </tr>
   <tr>
     <td><b>Build Tool</b></td>
     <td>Maven</td>
+    <td>Manages dependencies and automates project builds.</td>
   </tr>
   <tr>
     <td><b>Data Format</b></td>
     <td>JSON</td>
+    <td>Handles client–server data exchange.</td>
   </tr>
   <tr>
     <td><b>Testing</b></td>
     <td>JUnit, Postman</td>
+    <td>JUnit for automated tests; Postman for API validation.</td>
+  </tr>
+  <tr>
+    <td><b>Architecture</b></td>
+    <td>MVC</td>
+    <td>Separates controllers, services, and models for clarity.</td>
+  </tr>
+  <tr>
+    <td><b>API Design</b></td>
+    <td>REST</td>
+    <td>Implements standard CRUD endpoints via HTTP methods.</td>
   </tr>
 </table>
 
@@ -77,9 +95,12 @@ It’s designed for learning, interviews, or as part of a developer portfolio to
 
 <div align="center">
 
-## 📬 API Endpoints
+## API Endpoint Reference
+Explore the CRUD Operations Available in Developer Skill API
 
 </div>
+
+<div align="center">
 
 | Method | Endpoint | Description |
 |--------|-----------|-------------|
@@ -88,12 +109,14 @@ It’s designed for learning, interviews, or as part of a developer portfolio to
 | POST | `/api/developers` | Add a new developer |
 | PUT | `/api/developers/{id}` | Update an existing developer |
 | DELETE | `/api/developers/{id}` | Delete a developer |
+</div>
 
 ---
 
 <div align="center">
 
-## 🧠 Example Request & Response
+## Example Request & Response
+Demonstrating JSON Data Flow Through API Endpoints
 
 </div>
 
@@ -108,7 +131,7 @@ It’s designed for learning, interviews, or as part of a developer portfolio to
 ```
 <div align="center">
 
-## 📖 Example Response
+## GET Example Response
 
 </div>
 
@@ -134,7 +157,8 @@ Response:
 
 <div align="center">
 
-## 💡 Purpose
+## Project Purpose & Learning Goals
+Why This Project Matters and What It Demonstrates
 
 </div>
 
@@ -144,7 +168,8 @@ This API showcases backend proficiency, API documentation, and clean architectur
 
 <div align="center">
 
-## 💻 How to Run Locally
+## Local Setup & Execution Guide
+Run and Test Developer Skill API on Your Own Machine
 
 </div>
 
