@@ -211,11 +211,25 @@ Leveled up development experience and polishing portfolios
 
 </div>
 
-- Small CSS tweaks (like width: 93% or margin-left: 15px) can completely change a layout’s feel.
-- How frontend JavaScript `fetch()` requests connect to backend endpoints, completing the full CRUD (Create, Read, Update, Delete) workflow.
-- README files serve not just as documentation but as a showcase of design clarity, technical organization, and personal branding.
-- The difference between temporary local preview links and deployed live sites — and how to represent them effectively in a README using preview images or setup guides.
+- Small CSS refinements (like width: 93% or margin-left: 15px) can completely change a layout’s balance and visual appeal.
+- Learned how frontend JavaScript `fetch()` calls connect seamlessly with backend endpoints to complete the full CRUD (Create, Read, Update, Delete) cycle.
+- Realized that README files are more than documentation — they’re storytelling tools that reflect design clarity, organization, and technical voice.
+- Gained awareness of the difference between temporary local preview links and fully deployed live sites — and how to represent them gracefully using preview images and setup instructions.
+
+---
+<div align="center">
+
+## Next Steps
+Continuing to build, refine, and scale Developer Skill API
+
+</div>
+
+- Database Integration — Connect to a persistent database (like PostgreSQL or MySQL) to store developer data permanently.
+- Swagger Documentation — Add Swagger UI for interactive API testing and clear endpoint visualization.
+- Enhanced Validation — Implement input validation and error handling for a more robust user experience.
+- Frontend Expansion — Build a separate React or Vue frontend that consumes the API and visualizes developer data dynamically.
+- Cloud Deployment — Deploy the full application using Render, Railway, or AWS to make it accessible 24/7.
 
 ---
 
-<div align="center"> <sub>Built with ☕, 💙, and clean architecture principles.</sub> </div> 
+<div align="center"> Built with ☕, 💙, and clean architecture principles. </div> 
