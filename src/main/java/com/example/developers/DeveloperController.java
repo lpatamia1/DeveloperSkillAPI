@@ -7,7 +7,7 @@ import java.util.List;
 @RequestMapping("/api/developers")
 @CrossOrigin(origins = "*")
 public class DeveloperController {
-    
+
     private final DeveloperService service;
 
     public DeveloperController(DeveloperService service) {
@@ -37,5 +37,10 @@ public class DeveloperController {
     @DeleteMapping("/{id}")
     public void deleteDeveloper(@PathVariable int id) {
         service.deleteDeveloper(id);
+    }
+
+    @GetMapping("/")
+    public String home() {
+        return "👋 Developer Skill API is running!";
     }
 }
