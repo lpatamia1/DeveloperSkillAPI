@@ -204,4 +204,18 @@ curl -X GET http://localhost:8080/api/developers
 ```
 ---
 
+<div align="center">
+
+## What I Learned
+Leveled up development experience and polishing portfolios
+
+</div>
+
+- Small CSS tweaks (like width: 93% or margin-left: 15px) can completely change a layout’s feel.
+- How frontend JavaScript `fetch()` requests connect to backend endpoints, completing the full CRUD (Create, Read, Update, Delete) workflow.
+- README files serve not just as documentation but as a showcase of design clarity, technical organization, and personal branding.
+- The difference between temporary local preview links and deployed live sites — and how to represent them effectively in a README using preview images or setup guides.
+
+---
+
 <div align="center"> <sub>Built with ☕, 💙, and clean architecture principles.</sub> </div> 
