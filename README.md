@@ -36,7 +36,6 @@ What Makes This API Clean, Extensible, and Developer-Friendly
 - **Extensibility** — Built to easily add new endpoints or modules  
 
 ---
----
 
 <div align="center">
 
@@ -45,12 +44,13 @@ What Makes This API Clean, Extensible, and Developer-Friendly
 Try the interactive frontend connected to this API!  
 👉 [Open Live App](https://verbose-space-fiesta-xgx667wqv6367g5-8080.app.github.dev/)
 
-![App Preview](https://github.com/lpatamia1/DeveloperSkillAPI/assets/demo-preview.png)
+![App Preview](assets/demo-preview.png)
 
 </div>
 
-<div align="center">
+---
 
+<div align="center">
 ## Tech Stack Overview
 Tools, Frameworks, and Their Roles in the Project
 
