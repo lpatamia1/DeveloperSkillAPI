@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)https://verbose-space-fiesta-xgx667wqv6367g5-8080.app.github.dev/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>👩‍💻 Developer Skill API</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fff6fb, #ffe3f1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    h1 {
+      color: #e91e63;
+      font-size: 2.4rem;
+      text-align: center;
+      margin-bottom: 1.8rem;
+      font-weight: 700;
+    }
+
+    /* ✅ wrapper that moves the white content area */
+    .content-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    form {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        width: 100%;
+        max-width: 420px;
+        text-align: center;
+        transition: all 0.2s ease;
+        margin-bottom: 1.5rem;
+        margin-left: 50px; /* 🌸 visible right shift */
+    }
+
+    form:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    input {
+              width: 93.5%;
+                    padding: 0.8rem;
+                          margin: 0.6rem 0;
+                                border: 1px solid #f1b6cb;
+                                      border-radius: 10px;
+                                            font-size: 1rem;
+                                                  background-color: #fffafc;
+                                                        transition: all 0.2s ease;
+                                                            }
+
+    }
+    input:focus {
+      border-color: #e91e63;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.15);
+    }
+
+    button {
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 0.9rem 1.5rem;
+      margin-top: 0.8rem;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #d81b60;
+      transform: translateY(-2px);
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 1rem 1.5rem;
+      margin: 1rem 0;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      max-width: 420px;
+      width: 100%;
+      text-align: left;
+    }
+
+    .card h3 {
+      color: #e91e63;
+      margin-bottom: 0.4rem;
+    }
+
+    .card p {
+      margin: 0.3rem 0;
+      color: #555;
+    }
+
+    .card button {
+      background-color: #f8bbd0;
+      color: #333;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .card button:hover {
+      background-color: #f48fb1;
+    }
+
+    @media (max-width: 600px) {
+      .content-wrapper {
+        left: 0; /* reset for mobile screens */
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>👩‍💻 Developer Skill API</h1>
+
+  <div class="content-wrapper">
+    <form id="devForm">
+      <input type="text" id="name" placeholder="Name" required="">
+      <input type="text" id="title" placeholder="Title" required="">
+      <input type="text" id="skills" placeholder="Skills (comma separated)">
+      <input type="text" id="certifications" placeholder="Certifications (comma separated)">
+      <button type="submit">Add Developer</button>
+    </form>
+
+    <div id="developers"><div class="card">
+          <h3>John Doe</h3>
+          <p><strong>Java Developer</strong></p>
+          <p>Skills: Spring Boot, REST, JSON</p>
+          <p>Certifications: Oracle Java SE</p>
+          <button onclick="deleteDeveloper(4)">Delete</button>
+        </div><div class="card">
+          <h3>Jane Doe</h3>
+          <p><strong>Senior Consultant</strong></p>
+          <p>Skills: Java, REST</p>
+          <p>Certifications: AWS, Apache Spark Developer</p>
+          <button onclick="deleteDeveloper(5)">Delete</button>
+        </div><div class="card">
+          <h3>Jill Smith</h3>
+          <p><strong>Development Coordinator</strong></p>
+          <p>Skills: IT, Project Management</p>
+          <p>Certifications: Agile, Certified Professional in Talent Development</p>
+          <button onclick="deleteDeveloper(6)">Delete</button>
+        </div></div>
+  </div>
+
+  <script>
+    const apiUrl = '/api/developers';
+
+    async function loadDevelopers() {
+      const res = await fetch(apiUrl);
+      const data = await res.json();
+      const container = document.getElementById('developers');
+      container.innerHTML = '';
+      data.forEach(dev => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `
+          <h3>${dev.name}</h3>
+          <p><strong>${dev.title}</strong></p>
+          <p>Skills: ${dev.skills.join(', ')}</p>
+          <p>Certifications: ${dev.certifications.join(', ')}</p>
+          <button onclick="deleteDeveloper(${dev.id})">Delete</button>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    async function addDeveloper(e) {
+      e.preventDefault();
+      const newDev = {
+        name: document.getElementById('name').value,
+        title: document.getElementById('title').value,
+        skills: document.getElementById('skills').value.split(',').map(s => s.trim()),
+        certifications: document.getElementById('certifications').value.split(',').map(c => c.trim())
+      };
+      await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newDev)
+      });
+      e.target.reset();
+      loadDevelopers();
+    }
+
+    async function deleteDeveloper(id) {
+      await fetch(`${apiUrl}/${id}`, { method: 'DELETE' });
+      loadDevelopers();
+    }
+
+    document.getElementById('devForm').addEventListener('submit', addDeveloper);
+    loadDevelopers();
+  </script>
+
+</body></html>
