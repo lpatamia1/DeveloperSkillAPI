@@ -16,7 +16,8 @@ public class DeveloperService {
     }
 
     public Developer getById(int id) {
-        return repository.findById(id).orElseThrow(() -> new RuntimeException("Developer not found"));
+        return repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Developer not found"));
     }
 
     public Developer addDeveloper(Developer dev) {
@@ -33,8 +34,9 @@ public class DeveloperService {
     }
 
     public void deleteDeveloper(int id) {
-        if (!repository.existsById(id))
+        if (!repository.existsById(id)) {
             throw new RuntimeException("Developer not found");
-        repository.delete(id);
+        }
+        repository.deleteById(id); // 
     }
 }

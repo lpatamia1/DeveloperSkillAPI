@@ -6,12 +6,12 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- ✅ This parent automatically provides versions for Spring Boot dependencies -->
+    <!-- ✅ Spring Boot Parent handles dependency versions -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.2</version> <!-- You can bump this later -->
-        <relativePath/> <!-- lookup parent from the repository -->
+        <version>3.3.2</version>
+        <relativePath/> 
     </parent>
 
     <groupId>com.example</groupId>
@@ -21,21 +21,42 @@
     <description>A clean and scalable Spring Boot REST API</description>
 
     <properties>
-        <java.version>11</java.version>
+        <!-- Must match your installed JDK version -->
+        <java.version>17</java.version>
     </properties>
 
     <dependencies>
-        <!-- 🌐 Web dependency -->
+        <!-- 🌐 Spring Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- ✨ Lombok (auto-generates getters/setters) -->
+        <!-- 🗄️ Spring Data JPA -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- 🧩 H2 Database -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- 🧰 Lombok (auto-getters/setters, builders) -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+        </dependency>
+
+        <!-- 📖 Swagger / OpenAPI Docs -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.5.0</version>
         </dependency>
 
         <!-- 🧪 Testing -->
