@@ -232,4 +232,6 @@ Continuing to build, refine, and scale Developer Skill API
 
 ---
 
-<div align="center"> Built with ☕, 💙, and clean architecture principles. </div> 
+<div align="center"> Built with ☕, 💙, and clean architecture principles. 
+  
+<sub>Crafted with Spring Boot, Java, and creativity — by Lily Patamia 🌸</sub></div> 
