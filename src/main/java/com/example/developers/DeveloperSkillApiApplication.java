@@ -21,6 +21,7 @@ public class DeveloperSkillApiApplication {
             System.out.println("--------------------------------------------------");
             System.out.println("🚀 DevBase API is running!");
             System.out.println("🌍 Endpoint: http://localhost:8080/api/developers");
+            System.out.println("💾 Database: PostgreSQL (HikariCP)");
             System.out.println("--------------------------------------------------");
             System.out.println("🧩 Type 'add' to add a new developer or 'exit' to quit:");
 

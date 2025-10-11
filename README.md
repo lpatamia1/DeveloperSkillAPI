@@ -236,11 +236,12 @@ Continuing to build, refine, and scale Developer Skill API
 
 </div>
 
-- Database Integration — Connect to a persistent database (like PostgreSQL or MySQL) to store developer data permanently.
-- Swagger Documentation — Add Swagger UI for interactive API testing and clear endpoint visualization.
-- Enhanced Validation — Implement input validation and error handling for a more robust user experience.
-- Frontend Expansion — Build a separate React or Vue frontend that consumes the API and visualizes developer data dynamically.
-- Cloud Deployment — Deploy the full application using Render, Railway, or AWS to make it accessible 24/7.
+- ✅ **Database Integration** — Successfully connected to **PostgreSQL** with JPA entities and persistent storage.
+- 🛠 **Swagger Documentation** — Add **Swagger UI / OpenAPI** for interactive endpoint testing and clear API specs.
+- ⚙️ **Enhanced Validation & Error Handling** — Add field validation (e.g., `@NotBlank`, `@Email`) and standardized error responses.
+- 💡 **Frontend Expansion** — Extend the simple HTML+JS interface into a **React** or **Vue** frontend that consumes the same API.
+- ☁️ **Cloud Deployment** — Deploy on **Render**, **Railway**, or **AWS** for 24/7 public access.
+- 📊 **Metrics Dashboard (Optional)** — Add endpoints that summarize developer data (e.g., most common skills or certification stats).
 
 ---
 
