@@ -240,7 +240,7 @@
       if (res.ok) {
         showToast("Developer added!");
         e.target.reset();
-        loadDevelopers();
+        setTimeout(loadDevelopers, 300);
       } else {
         showToast("Add failed", "#eab308");
       }
