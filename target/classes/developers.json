@@ -16,4 +16,10 @@
   "title" : "Development Coordinator",
   "skills" : [ "IT", "Project Management" ],
   "certifications" : [ "Agile", "Certified Professional in Talent Development" ]
+}, {
+  "id" : 7,
+  "name" : "Mateo Rivera",
+  "title" : "Data Engineer",
+  "skills" : [ "Python", "Airflow", "SQL", "Docker" ],
+  "certifications" : [ "Google Cloud Data Engineer" ]
 } ]

@@ -1,0 +1,42 @@
+Developer Skill API connects to a real PostgreSQL database and what each configuration step accomplished
+
+Think of PostgreSQL as a big Excel sheet that lives on the computer but for developers and apps.
+So far:
+- Installed the database server (sudo apt install postgresql)
+- Started it running (sudo service postgresql start)
+- Verified it’s active (sudo service postgresql status)
+✅ That means the computer is now running a real database server on port 5432.
+
+Inside PostgreSQL, a database is like a specific Excel workbook.
+The Spring Boot app connects to this one.
+Ran:
+    CREATE DATABASE developers;
+
+- That means your app now has a private place to store tables like:
+    - developer (developer info)
+    - skills
+    - certifications
+
+Created a Database User (postgres)
+This is like giving the app a login account to access the database.
+- The app can now "log in" using a username and password to read and write data.
+
+PostgreSQL only trusts certain kinds of logins.
+That means PostgreSQL now requires a password (instead of checking the system username).
+✅ This is safer and necessary for Spring Boot to connect.
+
+Spring Boot connects to your PostgreSQL database and automatically creates tables for your Developer model.
+
+
+--------------------------------------------------------------------------------------------
+| Action	                |    Meaning                                                   |
+| -----------------------------------------------------------------------------------------|
+| Installed PostgreSQL	    |    Added a real database to the app                         |
+| Created developers DB	    |    Where all developer info lives                            |
+| Gave app credentials	    |    Allowed Spring Boot to connect securely                   |     
+| Fixed authentication	    |    Switched from “trust local user” to “password login”      |
+| Connected backend	        |    Now the app actually writes & reads real data            |
+| UI shows data	            |    You’re seeing live DB content rendered in the browser     |
+--------------------------------------------------------------------------------------------
+
+When you click 'Add Developer' on the UI, the data flows through all these layers.

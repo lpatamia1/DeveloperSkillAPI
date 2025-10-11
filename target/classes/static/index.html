@@ -89,7 +89,7 @@
     }
 
     .card {
-      background: #fff;
+      background: linear-gradient(145deg, #ffffff, #f5fff5);
       border-radius: 15px;
       padding: 1rem 1.5rem;
       margin: 1rem 0;
@@ -98,11 +98,14 @@
       width: 100%;
       text-align: left;
       margin-left: 49px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+
     }
 
     .card h3 {
       color: #2e7d32;
       margin-bottom: 0.4rem;
+      margin-left: 4px;
     }
 
     .card p {
@@ -125,6 +128,12 @@
 
     .card button:hover {
       background-color: #43a0485f;
+      box-shadow: 0 3px 10px rgba(190, 215, 179, 0.799);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(46, 125, 50, 0.25);
     }
 
     @media (max-width: 600px) {
@@ -180,13 +189,21 @@
         skills: document.getElementById('skills').value.split(',').map(s => s.trim()),
         certifications: document.getElementById('certifications').value.split(',').map(c => c.trim())
       };
+
+      const btn = document.querySelector("button[type='submit']");
+      btn.textContent = "Adding...";
+
       await fetch(apiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newDev)
       });
+
       e.target.reset();
       loadDevelopers();
+
+      btn.textContent = "Added!";
+      setTimeout(() => (btn.textContent = "Add Developer"), 1500);
     }
 
     async function deleteDeveloper(id) {
