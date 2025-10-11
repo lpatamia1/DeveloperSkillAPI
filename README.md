@@ -1,12 +1,14 @@
 <div align="center">
   
-# 🧩 Developer Skill API
+# 🧩 DevBase — Developer Skill API
 
 ![Java](https://img.shields.io/badge/Java-006400?style=for-the-badge&logo=java&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-006400?style=for-the-badge&logo=springboot&logoColor=white)
 ![Maven](https://img.shields.io/badge/Maven-006400?style=for-the-badge&logo=apachemaven&logoColor=white)
 ![JSON](https://img.shields.io/badge/JSON-006400?style=for-the-badge&logo=json&logoColor=white)
-
+> A full-stack REST API that lets you **create, update, and manage developer profiles**.  
+> Built with **Spring Boot**, **PostgreSQL**, and a minimalist frontend for CRUD operations.  
+> Clean, scalable, and portfolio-ready.
 </div>
 
 ---
@@ -126,19 +128,37 @@ Explore the CRUD Operations Available in Developer Skill API
 
 <div align="center">
 
+## 🧩 Architecture Overview
+How the Frontend, Backend, and Database Connect
+
+</div>
+
+```mermaid
+flowchart TD
+    User[👩‍💻 User] -->|Fetch/Add| UI[🌐 Frontend (HTML + JS)]
+    UI -->|HTTP Requests| API[🧩 Spring Boot REST API]
+    API -->|CRUD Operations| DB[(🗄️ PostgreSQL Database)]
+    API -->|JSON Responses| UI
+```
+
+---
+
+<div align="center">
+
 ## Example Request & Response
 Demonstrating JSON Data Flow Through API Endpoints
 
 </div>
 
 ```json
-{
-  "name": "John Doe",
-  "title": "Java Developer",
-  "skills": ["Spring Boot", "API Design", "JSON"],
-  "certifications": ["Oracle Java SE"]
-}
-
+curl -X POST http://localhost:8080/api/developers \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Jinora Moon",
+    "title": "Backend Developer",
+    "skills": ["Spring Boot", "SQL"],
+    "certifications": ["Oracle Java SE"]
+  }'
 ```
 <div align="center">
 
@@ -151,18 +171,13 @@ GET /api/skills
 ```
 Response:
 ```json
-[
-  {
-    "id": 1,
-    "name": "Java",
-    "level": "Intermediate"
-  },
-  {
-    "id": 2,
-    "name": "Spring Boot",
-    "level": "Beginner"
-  }
-]
+{
+  "id": 3,
+  "name": "Jinora Moon",
+  "title": "Backend Developer",
+  "skills": ["Spring Boot", "SQL"],
+  "certifications": ["Oracle Java SE"]
+}
 ```
 ---
 
@@ -198,10 +213,7 @@ Run and Test Developer Skill API on Your Own Machine
    ```bash
    curl -X GET http://localhost:8080/api/developers
    ```
-Test endpoints using Postman or cURL:
-```bash
-curl -X GET http://localhost:8080/api/developers
-```
+
 ---
 
 <div align="center">
@@ -232,6 +244,8 @@ Continuing to build, refine, and scale Developer Skill API
 
 ---
 
-<div align="center"> Built with ☕, 💙, and clean architecture principles. 
+<div align="center"> Built with ☕, 💚, and clean architecture principles. 
   
-<sub>Crafted with Spring Boot, Java, and creativity — by Lily Patamia 🌸</sub></div> 
+<sub>Crafted by Lily Patamia | Spring Boot • Java • PostgreSQL • Creativity 🌿</sub>
+
+</div> 
