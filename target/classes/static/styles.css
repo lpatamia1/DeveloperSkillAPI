@@ -1,0 +1,398 @@
+:root {
+  --emerald: #43a047;
+  --darkgreen: #1b5e20;
+  --lightgreen: #81c784;
+  --soft: #f3fbf3;
+  --glass: rgba(255, 255, 255, 0.65);
+  --shadow: rgba(46,125,50,0.2);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: radial-gradient(circle at 30% 20%, #e9f7ef 0%, #bfe3c3 40%, #a5d6a7 100%);
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  color: var(--darkgreen);
+  overflow-x: hidden;
+}
+
+/* 🌿 Sidebar */
+.sidebar {
+  width: 330px;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  box-shadow: 4px 0 20px rgba(46,125,50,0.15);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  border-right: 1px solid rgba(46,125,50,0.1);
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #a5d6a7;
+  border-radius: 4px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: #f8fcf9;
+}
+
+/* 🌿 Sidebar Chart Cards — Balanced Layout */
+.chart-card {
+  background: #f8fcf9;
+  border-radius: 16px;
+  padding: 1.2rem 1rem 1rem;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 10px rgba(67, 160, 71, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.chart-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(67, 160, 71, 0.15);
+}
+
+.chart-card h3 {
+  color: #1b5e20;
+  font-weight: 600;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* 🪴 Chart Canvas – clean spacing and readability */
+.chart-card canvas {
+  display: block;
+  width: 90% !important;
+  max-width: 220px !important;
+  height: 140px !important;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: inset 0 0 6px rgba(67, 160, 71, 0.05);
+  padding: 8px;
+}
+
+/* 🌱 Tagline */
+.tagline {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--darkgreen);
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.tagline::after {
+  content: "";
+  display: block;
+  width: 45px;
+  height: 4px;
+  background: var(--emerald);
+  border-radius: 3px;
+  margin-top: 8px;
+}
+
+/* ✨ Chart bar slide-in animation */
+@keyframes slideInBar {
+  from { transform: scaleX(0); opacity: 0.3; }
+  to { transform: scaleX(1); opacity: 1; }
+}
+
+.chart-card canvas {
+  transform-origin: left;
+  animation: slideInBar 1s ease-out;
+}
+
+/* 🌿 Sidebar metrics */
+.metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--darkgreen);
+}
+
+.metrics span {
+  font-weight: 600;
+  color: var(--emerald);
+}
+
+footer {
+  margin-top: auto;
+  font-size: 0.8rem;
+  color: #2e7d32b8;
+  text-align: center;
+}
+
+/* 🌿 Main Section */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.2rem 2rem 3rem;
+}
+
+.top-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1050px;
+  margin-top: -0.5rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.left h1 {
+  margin: 0.3rem 0 0.6rem;
+  font-size: 2.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.puzzle {
+  font-size: 4rem;
+  margin-right: 0.2rem;
+  filter: drop-shadow(0 0 6px rgba(67,160,71,0.35));
+  animation: spin 8s linear infinite;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  position: relative;
+  top: 4px;
+}
+
+.filter-input {
+  width: 200px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(46,125,50,0.2);
+  background: #fff;
+  padding: 0 1rem;
+  color: var(--darkgreen);
+}
+
+.add-btn {
+  background: linear-gradient(90deg, #2e7d32, #43a047);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  height: 44px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(46,125,50,0.08);
+  transition: 0.25s;
+}
+
+.add-btn:hover {
+  background: linear-gradient(90deg, #66bb6a, #43a047);
+  transform: translateY(-2px);
+}
+
+/* Divider */
+.divider {
+  width: 100%;
+  max-width: 900px;
+  height: 2px;
+  border: none;
+  background: linear-gradient(to right, transparent, rgba(46,125,50,0.35), transparent);
+  margin: -1rem 0 1.3rem 0;
+}
+
+.intro {
+  margin-top: 0.2rem;
+  margin-bottom: 0.8rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 900px;
+  color: var(--darkgreen);
+}
+
+/* 🌱 Developer Cards */
+#developers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.4rem;
+  width: 100%;
+  max-width: 900px;
+}
+
+.card {
+  position: relative;
+  background: linear-gradient(145deg, #f9fff9, #e1f5e3);
+  border: 1px solid rgba(46,125,50,0.12);
+  border-radius: 16px;
+  padding: 1.5rem;
+  color: var(--darkgreen);
+  box-shadow: 0 6px 14px rgba(46,125,50,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.25s ease;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(46,125,50,0.18);
+}
+
+/* Buttons inside cards */
+.remove-btn,
+.edit-btn {
+  position: absolute;
+  top: 8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1.5px solid #a5d6a7;
+  color: #2e7d32;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.remove-btn {
+  right: 8px;
+}
+
+.edit-btn {
+  right: 42px;
+}
+
+.remove-btn:hover,
+.edit-btn:hover {
+  background: #e8f5e9;
+  border-color: #43a047;
+  color: #1b5e20;
+  transform: scale(1.1);
+}
+
+/* 🌸 Add Developer Form */
+#devForm {
+  display: none;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease-in-out;
+  position: fixed;
+  top: 140px;
+  right: 60px;
+  background: linear-gradient(145deg, #ffffffb3, #f4fff8);
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(46, 125, 50, 0.25);
+  padding: 2rem;
+  width: 400px;
+  z-index: 100;
+}
+
+#devForm.expanded {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Inputs inside form */
+input {
+  width: 100%;
+  padding: 1rem 1.1rem;
+  margin: 0.8rem 0;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(90deg, #a5d6a7, #81c784) border-box;
+  font-size: 1rem;
+  color: var(--darkgreen);
+}
+
+input:focus {
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(90deg, var(--emerald), var(--lightgreen)) border-box;
+  box-shadow: 0 4px 12px rgba(67,160,71,0.25);
+  outline: none;
+}
+
+/* Buttons in form */
+button[type="submit"],
+#cancelBtn {
+  margin-top: 1rem;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem;
+  width: 100%;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button[type="submit"] {
+  background: linear-gradient(90deg, #2e7d32, #43a047);
+  color: #fff;
+}
+
+#cancelBtn {
+  background: #e8f5e9;
+  color: var(--darkgreen);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 🌿 Responsive */
+@media (max-width: 800px) {
+  .sidebar {
+    display: none;
+  }
+  body {
+    flex-direction: column;
+  }
+  .main {
+    padding: 2rem 1rem;
+  }
+}
