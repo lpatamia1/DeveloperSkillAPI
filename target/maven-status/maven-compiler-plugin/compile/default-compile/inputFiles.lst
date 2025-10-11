@@ -1,0 +1,7 @@
+/workspaces/DeveloperSkillAPI/src/main/java/com/devbase/dto/DeveloperDTO.java
+/workspaces/DeveloperSkillAPI/src/main/java/com/example/developers/Developer.java
+/workspaces/DeveloperSkillAPI/src/main/java/com/example/developers/DeveloperController.java
+/workspaces/DeveloperSkillAPI/src/main/java/com/example/developers/DeveloperRepository.java
+/workspaces/DeveloperSkillAPI/src/main/java/com/example/developers/DeveloperService.java
+/workspaces/DeveloperSkillAPI/src/main/java/com/example/developers/DeveloperSkillApiApplication.java
+/workspaces/DeveloperSkillAPI/src/main/java/com/example/developers/GlobalExceptionHandler.java

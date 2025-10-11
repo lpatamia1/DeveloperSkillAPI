@@ -1,0 +1,25 @@
+[ {
+  "id" : 4,
+  "name" : "John Doe",
+  "title" : "Java Developer",
+  "skills" : [ "Spring Boot", "REST", "JSON" ],
+  "certifications" : [ "Oracle Java SE" ]
+}, {
+  "id" : 5,
+  "name" : "Jane Doe",
+  "title" : "Senior Consultant",
+  "skills" : [ "Java", "REST" ],
+  "certifications" : [ "AWS", "Apache Spark Developer" ]
+}, {
+  "id" : 6,
+  "name" : "Jill Smith",
+  "title" : "Development Coordinator",
+  "skills" : [ "IT", "Project Management" ],
+  "certifications" : [ "Agile", "Certified Professional in Talent Development" ]
+}, {
+  "id" : 7,
+  "name" : "Mateo Rivera",
+  "title" : "Data Engineer",
+  "skills" : [ "Python", "Airflow", "SQL", "Docker" ],
+  "certifications" : [ "Google Cloud Data Engineer" ]
+} ]
