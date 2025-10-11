@@ -1,5 +1,8 @@
 package com.example.developers;
 
+import com.devbase.dto.DeveloperDTO;
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -14,33 +17,44 @@ public class DeveloperController {
         this.service = service;
     }
 
+    // ✅ Get all developers
     @GetMapping
-    public List<Developer> getAll() {
-        return service.getAll();
+    public ResponseEntity<List<DeveloperDTO>> getAllDevelopers() {
+        List<DeveloperDTO> developers = service.getAllDevelopers();
+        return ResponseEntity.ok(developers);
     }
 
+    // ✅ Get developer by ID
     @GetMapping("/{id}")
-    public Developer getById(@PathVariable int id) {
-        return service.getById(id);
+    public ResponseEntity<DeveloperDTO> getById(@PathVariable Long id) {
+        DeveloperDTO dev = service.getDeveloperById(id);
+        return ResponseEntity.ok(dev);
     }
 
+    // ✅ Add a new developer
     @PostMapping
-    public Developer addDeveloper(@RequestBody Developer dev) {
-        return service.addDeveloper(dev);
+    public ResponseEntity<DeveloperDTO> addDeveloper(@Valid @RequestBody DeveloperDTO dto) {
+        DeveloperDTO created = service.saveDeveloper(dto);
+        return ResponseEntity.status(201).body(created);
     }
 
+    // ✅ Update developer info
     @PutMapping("/{id}")
-    public Developer updateDeveloper(@PathVariable int id, @RequestBody Developer updated) {
-        return service.updateDeveloper(id, updated);
+    public ResponseEntity<DeveloperDTO> updateDeveloper(@PathVariable Long id, @RequestBody DeveloperDTO updated) {
+        DeveloperDTO updatedDev = service.updateDeveloper(id, updated);
+        return ResponseEntity.ok(updatedDev);
     }
 
+    // ✅ Delete developer
     @DeleteMapping("/{id}")
-    public void deleteDeveloper(@PathVariable int id) {
+    public ResponseEntity<Void> deleteDeveloper(@PathVariable Long id) {
         service.deleteDeveloper(id);
+        return ResponseEntity.noContent().build();
     }
 
+    // ✅ Optional health-check endpoint
     @GetMapping("/")
-    public String home() {
-        return "👋 Developer Skill API is running!";
+    public ResponseEntity<String> home() {
+        return ResponseEntity.ok("👋 DevBase API is running and connected to PostgreSQL!");
     }
 }
