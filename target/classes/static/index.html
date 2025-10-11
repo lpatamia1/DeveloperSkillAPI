@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DevBase — Developer Dashboard</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <style>
     :root {
@@ -53,7 +55,7 @@
 
     .puzzle {
       display: inline-block;
-      font-size: 2.2rem;
+      font-size: 5.2rem;
       margin-right: 10px;
       animation: spin 8s linear infinite;
       filter: drop-shadow(0 0 4px rgba(67,160,71,0.3));
@@ -157,7 +159,7 @@
     }
 
     .left h1 {
-      margin-top: -6px; /* 👈 moves title up slightly */
+      margin-top: -50px; /* 👈 moves title up slightly */
       font-size: 3rem;
       font-weight: 700;
     }
@@ -253,17 +255,50 @@
     }
 
     .card {
+      position: relative;
       background: linear-gradient(145deg, #f9fff9, #e1f5e3);
       border: 1px solid rgba(46,125,50,0.12);
       border-radius: 16px;
-      padding: 1.3rem 1.5rem;
+      padding: 1.3rem 1.5rem 1.2rem; /* slightly smaller bottom padding */
       color: var(--darkgreen);
       box-shadow: 0 4px 10px rgba(46,125,50,0.12);
       display: flex;
       flex-direction: column;
+      gap: 0.4rem; /* keeps spacing between text consistent */
+      min-height: 180px; /* smaller card height */
       justify-content: space-between;
       min-height: 230px;
       transition: 0.3s;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInUp 0.5s ease forwards;
+    }
+
+    .remove-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: transparent;
+      color: #2e7d32;
+      border: 1.5px solid #a5d6a7;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+    }
+
+    .remove-btn:hover {
+      background: #e8f5e9;
+      border-color: #43a047;
+      color: #1b5e20;
+      transform: scale(1.1);
     }
 
     .card:hover {
@@ -283,21 +318,26 @@
     }
 
     .card button {
-      margin-top: 1rem;
+      margin-top: 0.6rem;
       align-self: flex-start;
-      background: linear-gradient(90deg, #2e7d32, #43a047);
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      padding: 0.7rem 1.2rem;
-      font-weight: 600;
+      background: transparent;
+      color: #2e7d32;
+      border: 1.5px solid #66bb6a;
+      border-radius: 50px;
+      padding: 0.25rem 0.8rem;
+      font-size: 0.8rem;
+      font-weight: 500;
       cursor: pointer;
       transition: all 0.25s ease;
     }
 
     .card button:hover {
-      background: linear-gradient(90deg, #66bb6a, #43a047);
+      background: #e8f5e9;
+      border-color: #43a047;
+      color: #1b5e20;
+      transform: translateY(-1px);
     }
+
 
     /* 🌸 Add Form */
     #devForm {
@@ -335,6 +375,38 @@
       box-shadow: 0 4px 12px rgba(67,160,71,0.25);
       outline: none;
     }
+    .highlight {
+      background-color: #c8e6c9;
+      border-radius: 4px;
+      padding: 0 4px;
+      transition: background-color 1s ease;
+    }
+
+    .chart-container {
+      margin-top: 1.5rem;
+      background: rgba(255,255,255,0.6);
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 2px 8px rgba(67,160,71,0.15);
+    }
+
+    .chart-container h3 {
+      margin: 0 0 0.8rem 0;
+      font-size: 1rem;
+      color: var(--darkgreen);
+      text-align: center;
+    }
+    
+    .glow-text {
+      color: #2e7d32;
+      font-style: italic;
+      text-shadow: 0 0 6px rgba(46,125,50,0.4), 0 0 12px rgba(76,175,80,0.25);
+      transition: text-shadow 0.3s ease-in-out;
+    }
+
+    .glow-text:hover {
+      text-shadow: 0 0 10px rgba(46,125,50,0.6), 0 0 18px rgba(76,175,80,0.4);
+    }
 
     button {
       margin-top: 1.2rem;
@@ -350,7 +422,12 @@
       transition: all 0.3s ease;
       box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);
     }
-
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
     @keyframes spin {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
@@ -377,6 +454,10 @@
       <div><span>Avg. Skills:</span> <span id="avgSkills">—</span></div>
       <div><span>Certifications:</span> <span id="certCount">—</span></div>
     </div>
+    <div class="chart-container">
+      <h3>Top Skills</h3>
+      <canvas id="skillsChart" width="200" height="180"></canvas>
+    </div>
 
     <footer>💚 DevBase v1.0</footer>
   </aside>
@@ -386,7 +467,11 @@
     <div class="top-controls">
       <div class="left">
       <h1><span class="puzzle">🧩</span> DevBase</h1>
-      <p>Visualize your team's skills and strengths</p>
+      <p>
+        Visualize your team's skills and strengths — discover hidden talent, inspire collaboration, and grow together. 
+        Track progress, celebrate achievements, and make data-driven decisions that empower your developers to reach new heights. 
+        <em class="glow-text">Turn every insight into action and every milestone into momentum.</em>
+      </p>
 
       </div>
       <div class="controls">
@@ -413,6 +498,7 @@
     const form = document.getElementById("devForm");
     const expandBtn = document.getElementById("expandBtn");
     const cancelBtn = document.getElementById("cancelBtn");
+    let skillsChart; // 🌿 global chart variable
 
     expandBtn.addEventListener("click", () => form.classList.add("expanded"));
     cancelBtn.addEventListener("click", () => form.classList.remove("expanded"));
@@ -434,54 +520,77 @@
       data.forEach(dev => {
         const div = document.createElement('div');
         div.className = 'card';
-        div.innerHTML = `
-          <div>
-            <h3>${dev.name}</h3>
-            <p><strong>${dev.title}</strong></p>
-            <p><strong>Skills:</strong> ${dev.skills.join(', ') || '—'}</p>
-            <p><strong>Certifications:</strong> ${dev.certifications.join(', ') || '—'}</p>
-          </div>
-          <button onclick="deleteDeveloper(${dev.id}, this)">Delete</button>
-        `;
+      div.innerHTML = `
+        <button class="remove-btn" onclick="deleteDeveloper(${dev.id}, this)">✕</button>
+        <div class="card-content">
+          <h3>${dev.name}</h3>
+          <p><strong>${dev.title}</strong></p>
+          <p><strong>Skills:</strong> ${dev.skills.join(', ') || '—'}</p>
+          <p><strong>Certifications:</strong> ${dev.certifications.join(', ') || '—'}</p>
+        </div>
+      `;
+
         container.appendChild(div);
       });
+      updateSkillsChart(data);
+
     }
 
     document.getElementById('filterInput').addEventListener('input', e => {
       const search = e.target.value.toLowerCase();
       document.querySelectorAll('.card').forEach(card => {
         const skillsText = card.textContent.toLowerCase();
-        card.style.display = skillsText.includes(search) ? 'flex' : 'none';
+        if (skillsText.includes(search)) {
+          card.style.display = 'flex';
+          card.classList.add('highlight');
+          setTimeout(() => card.classList.remove('highlight'), 800);
+        } else {
+          card.style.display = 'none';
+        }
       });
     });
 
+
     async function addDeveloper(e) {
-      e.preventDefault();
-      const newDev = {
-        name: document.getElementById('name').value,
-        title: document.getElementById('title').value,
-        skills: document.getElementById('skills').value.split(',').map(s => s.trim()).filter(Boolean),
-        certifications: document.getElementById('certifications').value.split(',').map(c => c.trim()).filter(Boolean)
-      };
+    e.preventDefault();
+    const newDev = {
+      name: document.getElementById('name').value,
+      title: document.getElementById('title').value,
+      skills: document.getElementById('skills').value.split(',').map(s => s.trim()).filter(Boolean),
+      certifications: document.getElementById('certifications').value.split(',').map(c => c.trim()).filter(Boolean)
+    };
 
-      const btn = e.target.querySelector("button[type='submit']");
-      btn.disabled = true;
-      btn.textContent = "Adding...";
+    const btn = e.target.querySelector("button[type='submit']");
+    btn.disabled = true;
+    btn.textContent = "Adding...";
 
-      const res = await fetch(apiUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newDev)
+    const res = await fetch(apiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newDev)
+    });
+
+    btn.disabled = false;
+    btn.textContent = "Add Developer";
+
+    if (res.ok) {
+      e.target.reset();
+      form.classList.remove("expanded");
+      loadDevelopers();
+
+      Swal.fire({
+        icon: "success",
+        title: "Developer Added!",
+        text: `${newDev.name} has been added to the team.`,
+        showConfirmButton: false,
+        timer: 2000,
+        background: "#f0fff4",
+        color: "#1b5e20",
+        toast: true,
+        position: "top-end",
       });
-
-      btn.disabled = false;
-      btn.textContent = "Add Developer";
-
-      if (res.ok) {
-        e.target.reset();
-        loadDevelopers();
-      }
     }
+  } // ✅ properly closed function
 
     async function deleteDeveloper(id, btn) {
       btn.textContent = "Deleting...";
@@ -490,6 +599,47 @@
       if (res.ok) {
         btn.closest('.card').remove();
       }
+    }
+    function updateSkillsChart(data) {
+      const skillFreq = {};
+      data.forEach(dev => {
+        dev.skills.forEach(skill => {
+          skillFreq[skill] = (skillFreq[skill] || 0) + 1;
+        });
+      });
+
+      const topSkills = Object.entries(skillFreq)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 5);
+
+      const labels = topSkills.map(([skill]) => skill);
+      const values = topSkills.map(([_, count]) => count);
+
+      // destroy old chart if it exists
+      if (skillsChart) skillsChart.destroy();
+
+      // create new chart
+      const ctx = document.getElementById('skillsChart').getContext('2d');
+      skillsChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [{
+            data: values,
+            backgroundColor: ['#66bb6a', '#81c784', '#a5d6a7', '#c8e6c9', '#e8f5e9'],
+            borderRadius: 6,
+            borderSkipped: false
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { grid: { display: false }, ticks: { color: '#1b5e20', font: { size: 12 } } },
+            y: { grid: { color: 'rgba(46,125,50,0.1)' }, ticks: { precision: 0, color: '#1b5e20' } }
+          }
+        }
+      });
     }
 
     document.getElementById('devForm').addEventListener('submit', addDeveloper);
