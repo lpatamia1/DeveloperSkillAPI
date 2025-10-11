@@ -128,7 +128,7 @@ Explore the CRUD Operations Available in Developer Skill API
 
 <div align="center">
 
-## 🧩 Architecture Overview
+## Architecture Overview
 How the Frontend, Backend, and Database Connect
 
 </div>
@@ -146,7 +146,7 @@ flowchart TD
 <div align="center">
 
 ## Example Request & Response
-Demonstrating JSON Data Flow Through API Endpoints
+Demonstrating How Data Moves Through DevBase API
 
 </div>
 
